@@ -53,7 +53,43 @@ The L298N is a dual H-Bridge motor driver which allows speed and direction contr
 
 
 ## PROGRAM:
+int directionPin = 12; </br>
+int pwmPin = 3; </br>
+int brakePin = 9; </br>
+//uncomment if using channel B, and remove above definitions </br>
+//int directionPin = 13; </br>
+//int pwmPin = 11; </br>
+//int brakePin = 8; </br>
+//boolean to switch direction </br>
+bool directionState; </br>
+void setup() { </br>
+//define pins </br>
+pinMode(directionPin, OUTPUT); </br>
+pinMode(pwmPin, OUTPUT); </br>
+pinMode(brakePin, OUTPUT); </br>
+} </br>
+void loop() { </br>
+//change direction every loop() </br>
+directionState = !directionState; </br>
+//write a low state to the direction pin (13) </br>
+if(directionState == false){ </br>
+digitalWrite(directionPin, LOW); </br>
+} </br>
+//write a high state to the direction pin (13) </br>
+else{ </br>
+digitalWrite(directionPin, HIGH); </br>
+} </br>
+//release breaks </br>
+digitalWrite(brakePin, LOW); </br>
+//set work duty for the motor </br>
+analogWrite(pwmPin, 30); </br>
 ## CIRCUIT DIAGRAM:
+
+![image](https://github.com/sivaraj111/Motor-Interfacing-/assets/133488419/43f0bcf0-ddd0-4838-8bcc-19f31775430a)
+
 ## OUTPUT:
+
+![image](https://github.com/sivaraj111/Motor-Interfacing-/assets/133488419/8d2d0b16-8ac5-40ba-9652-1c3c9ea2db7c)
+
 ## RESULT:
 Thus the motor was controlled using driver circuits, relays and Arduino UNO controller.
